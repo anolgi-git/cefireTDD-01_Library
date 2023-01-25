@@ -8,7 +8,6 @@ public class BookCollection {
     private final List<Book> books;
 
     public BookCollection(Book[] books) {
-
         this.books = Arrays.asList(books);
     }
 
@@ -21,5 +20,9 @@ public class BookCollection {
             }
         }
         return foundBooks;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }

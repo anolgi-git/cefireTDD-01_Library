@@ -26,6 +26,7 @@ public class BookCollectionTest {
     @Test
     public void shouldGetAnEmptyListIfNoMatchesAreFound(){
         final String isbnToLocate = "un-isbn-no-existe";
+        final String titleToLocate = "un título X";
         BookCollection books = new BookCollection(new Book[]{
                 new Book("un-isbn-1","un título 1","un autor 1"),
                 new Book("un-isbn-2","un título 2","un autor 2"),
@@ -33,5 +34,33 @@ public class BookCollectionTest {
         });
 
         Assertions.assertTrue(books.find(isbnToLocate).isEmpty());
+        Assertions.assertTrue(books.find(titleToLocate).isEmpty());
+
     }
+
+    @Test
+    public void ShouldFindBookByTitle(){
+        final String partialTitleToLocate = "un títu";
+        BookCollection books = new BookCollection(new Book[]{
+                new Book("un-isbn-1","un título 1","un autor 1"),
+                new Book("un-isbn-2","un título 2","un autor 2"),
+                new Book("un-isbn-2","un título 2","un autor 2"),
+                new Book("un-isbn-3","un título 3","un autor 3")
+        });
+
+        List<Book> foundBooks = books.find(partialTitleToLocate);
+        Assertions.assertFalse(foundBooks::isEmpty);
+
+        foundBooks.forEach((Book book) -> Assertions.assertTrue(book.getTitle().contains(partialTitleToLocate)));
+    }
+
+    @Test
+    public void shouldGetAnEmptyListIfBookCollectionIsEmpty(){
+        BookCollection booksEmpty = new BookCollection(new Book[]{});
+        //BookCollection books = new BookCollection(new Book[]{new Book("un-isbn-1","un título 1","un autor 1")});
+
+        Assertions.assertTrue(booksEmpty.getBooks().isEmpty());
+    }
+
+
 }
