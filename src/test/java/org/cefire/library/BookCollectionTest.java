@@ -16,7 +16,7 @@ public class BookCollectionTest {
         if(!books.find("un-isbn-2").isEmpty()){
             boolean allCoincidencesAreCorrect = true;
             for (Book book : books.find("un-isbn-2")) {
-                if(!book.getISBN().equals("un-isbn-2")){
+                if(!book.getISBN().equals("un-isbn-666")){
                     allCoincidencesAreCorrect = false;
                     break;
                 }
