@@ -57,9 +57,11 @@ public class BookCollectionTest {
     @Test
     public void shouldGetAnEmptyListIfBookCollectionIsEmpty(){
         BookCollection booksEmpty = new BookCollection(new Book[]{});
-        //BookCollection books = new BookCollection(new Book[]{new Book("un-isbn-1","un título 1","un autor 1")});
-
         Assertions.assertTrue(booksEmpty.getBooks().isEmpty());
+
+        // Descomentar per a forzar error
+        //BookCollection books = new BookCollection(new Book[]{new Book("un-isbn-1","un título 1","un autor 1")});
+        //Assertions.assertTrue(books.getBooks().isEmpty());
     }
 
 
