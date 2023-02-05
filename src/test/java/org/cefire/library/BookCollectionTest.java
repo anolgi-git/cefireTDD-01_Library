@@ -54,14 +54,16 @@ public class BookCollectionTest {
         foundBooks.forEach((Book book) -> Assertions.assertTrue(book.getTitle().contains(partialTitleToLocate)));
     }
 
-    @Test
-    public void shouldGetAnEmptyListIfBookCollectionIsEmpty(){
-        BookCollection booksEmpty = new BookCollection(new Book[]{});
-        Assertions.assertTrue(booksEmpty.getBooks().isEmpty());
 
-        // Descomentar per a forzar error
-        //BookCollection books = new BookCollection(new Book[]{new Book("un-isbn-1","un título 1","un autor 1")});
-        //Assertions.assertTrue(books.getBooks().isEmpty());
+    @Test
+    public void shouldGetNoMatchesIfBookCollectionIsEmpty(){
+        BookCollection books = new BookCollection(new Book[]{});
+
+        List<Book> foundBooks = books.find("cualquier-parametro-de-busqueda");
+
+        Assertions.assertTrue(foundBooks::isEmpty);
+        Assertions.assertEquals(foundBooks.size(),0);   // una altra forma del fer el mateix
+
     }
 
 

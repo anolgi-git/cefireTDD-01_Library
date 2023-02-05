@@ -22,7 +22,4 @@ public class BookCollection {
         return foundBooks;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
 }
