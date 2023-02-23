@@ -66,5 +66,19 @@ public class BookCollectionTest {
 
     }
 
+    @Test
+    public void shouldFindCopiesOfABook(){
+        final Book bookToBeFound = new Book ("isbn-que-debe-encontrarse","titulo1","autor1");
+        BookCollection books = new BookCollection(new Book[]{
+                new Book("isbn-que-debe-encontrarse","titulo1","autor1"),
+                new Book("un-isbn-2","un título 2","un autor 2"),
+                new Book("un-isbn-2","un título 2","un autor 2"),
+                new Book("isbn-que-debe-encontrarse","titulo1","autor1"),
+                new Book("un-isbn-3","un título 3","un autor 3")
+        });
 
+        List<Book> foundBooks = books.findCopies(bookToBeFound);
+        Assertions.assertFalse(foundBooks.isEmpty());
+        foundBooks.forEach((Book book) -> Assertions.assertEquals(book,bookToBeFound));
+    }
 }

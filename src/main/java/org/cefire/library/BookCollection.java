@@ -22,4 +22,16 @@ public class BookCollection {
         return foundBooks;
     }
 
+    public List<Book> findCopies(Book bookToBoFound){
+        List<Book> foundBooks = new ArrayList<>();
+        for (Book book : this.books) {
+            if(book.getISBN().equals(bookToBoFound.getISBN())
+            && book.getTitle().equals(bookToBoFound.getTitle())
+            && book.getAuthor().equals(bookToBoFound.getAuthor())){
+                foundBooks.add(bookToBoFound);
+            }
+        }
+        return foundBooks;
+    }
+
 }
