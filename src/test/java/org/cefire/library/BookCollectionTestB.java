@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class BookCollectionTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class BookCollectionTestB {  //TestB és igual que l'original però important directement els asserts
+                                    // i estalviant aixina el Assertions. cada vegada
 
     @Test
     public void ShouldFindBookByISBN(){
@@ -18,9 +21,9 @@ public class BookCollectionTest {
         });
 
         List<Book> foundBooks = books.find(isbnToLocate);
-        Assertions.assertFalse(foundBooks::isEmpty);
+        assertFalse(foundBooks::isEmpty);
 
-        foundBooks.forEach((Book book) -> Assertions.assertEquals(isbnToLocate,book.getISBN()));
+        foundBooks.forEach((Book book) -> assertEquals(isbnToLocate,book.getISBN()));
     }
 
     @Test
@@ -33,8 +36,8 @@ public class BookCollectionTest {
                 new Book("un-isbn-3","un título 3","un autor 3")
         });
 
-        Assertions.assertTrue(books.find(isbnToLocate).isEmpty());
-        Assertions.assertTrue(books.find(titleToLocate).isEmpty());
+        assertTrue(books.find(isbnToLocate).isEmpty());
+        assertTrue(books.find(titleToLocate).isEmpty());
 
     }
 
@@ -49,9 +52,9 @@ public class BookCollectionTest {
         });
 
         List<Book> foundBooks = books.find(partialTitleToLocate);
-        Assertions.assertFalse(foundBooks::isEmpty);
+        assertFalse(foundBooks::isEmpty);
 
-        foundBooks.forEach((Book book) -> Assertions.assertTrue(book.getTitle().contains(partialTitleToLocate)));
+        foundBooks.forEach((Book book) -> assertTrue(book.getTitle().contains(partialTitleToLocate)));
     }
 
 
@@ -61,8 +64,8 @@ public class BookCollectionTest {
 
         List<Book> foundBooks = books.find("cualquier-parametro-de-busqueda");
 
-        Assertions.assertTrue(foundBooks::isEmpty);
-        Assertions.assertEquals(foundBooks.size(),0);   // una altra forma del fer el mateix
+        assertTrue(foundBooks::isEmpty);
+        assertEquals(foundBooks.size(),0);   // una altra forma del fer el mateix
 
     }
 
@@ -78,8 +81,8 @@ public class BookCollectionTest {
         });
 
         List<Book> foundBooks = books.findCopies(bookToBeFound);
-        Assertions.assertFalse(foundBooks.isEmpty());
-        foundBooks.forEach((Book book) -> Assertions.assertEquals(book,bookToBeFound));
+        assertFalse(foundBooks.isEmpty());
+        foundBooks.forEach((Book book) -> assertEquals(book,bookToBeFound));
     }
 
     @Test
@@ -93,7 +96,7 @@ public class BookCollectionTest {
         });
 
         // açò fa el mateix que el try-catch de baix
-        Assertions.assertThrows(BookCollection.ExpectedToFindAtLeastOneBook.class, () -> books.findOrFail(textToLocate));
+        assertThrows(BookCollection.ExpectedToFindAtLeastOneBook.class, () -> books.findOrFail(textToLocate));
 //        try{
 //            books.findOrFail(textToLocate);
 //            Assertions.fail("Expected exception but got none");
